@@ -1,3 +1,3 @@
 # ag-ayush.github.io
 
-# My personal website, currently under construction.
+My personal website, currently under construction.
