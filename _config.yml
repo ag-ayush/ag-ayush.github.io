@@ -1,13 +1,13 @@
 # Site settings
 title: Ayush Goel
-description: Computer Scientist
+description: Software Engineer
 baseurl: ""
 
 timezone: America/New_York
 
 # User settings
 username: Ayush Goel
-user_description: Hello! My name is Ayush Goel and I am pursuing a Computer Science Bachelor's Degree at Rochester Institute of Technology. I am a member of Computer Science House as well. 
+user_description: Hello! My name is Ayush Goel and I am pursuing a Computer Science Bachelor's Degree at Rochester Institute of Technology. I am a member of Computer Science House as well.
 user_title: Computer Scientist
 email: ag.goelayush@gmail.com
 github_username:  ag-ayush
