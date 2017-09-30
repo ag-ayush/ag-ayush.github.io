@@ -6,14 +6,15 @@ baseurl: ""
 timezone: America/New_York
 
 # User settings
-username: ag-goel
+username: Ayush Goel
 user_description: I am a first year Computer Science Major at Rochester Institute of Technology.
 user_title: Computer Scientist
 email: ag.goelayush@gmail.com
-github_username:  ag-goel
+github_username:  ag-ayush
 
 # Google-analytics
 google-analytics:
   id: ""
 
-exclude: ['package.json', 'src' , 'node_modules']
+exclude: ['package.json', 'src']
+include: ['node_modules']
