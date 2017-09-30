@@ -1,1 +1,19 @@
-theme: jekyll-theme-hacker
+# Site settings
+title: Ayush Goel
+description: Computer Scientist
+baseurl: ""
+
+timezone: America/New_York
+
+# User settings
+username: ag-goel
+user_description: I am a first year Computer Science Major at Rochester Institute of Technology.
+user_title: Computer Scientist
+email: ag.goelayush@gmail.com
+github_username:  ag-goel
+
+# Google-analytics
+google-analytics:
+  id: ""
+
+exclude: ['package.json', 'src' , 'node_modules']
