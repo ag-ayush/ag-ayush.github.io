@@ -1,3 +1,111 @@
 ---
-layout: default
+layout: null
+title: About Me
+description: whoami
+sitemap:
+    priority: 1.0
+    lastmod: 2017-11-02
+    changefreq: weekly
 ---
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+  Jekyll integration by somiibo.com
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+    {% include head.html %}
+	</head>
+	<body class="is-loading">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Intro -->
+				<div id="intro">
+          <h1>{{site.title}}</h1>
+					<h3>Software Developer</h3>
+					<p>Second Year Computer Science and Computational Mathematics Student at Rochester Institute of Technology.</p>
+					<ul class="actions">
+						<li><a href="#header" class="button icon solo fa-arrow-down scrolly">Continue</a></li>
+					</ul>
+				</div>
+
+				<!-- Header -->
+				<header id="header">
+					<a href="{{ "/" | absolute_url }}" class="logo">{{site.title}}</a>
+				</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+
+            {% include nav.html %}
+
+						<ul class="icons">
+              <!-- <li><a href="https://twitter.com/{{site.twitter}}" class="icon fa-twitter" rel="nofollow"><span class="label">Twitter</span></a></li> -->
+              <!-- <li><a href="https://facebook.com/{{site.facebook}}" class="icon fa-facebook" rel="nofollow"><span class="label">Facebook</span></a></li> -->
+							<li><a href="https://github.com/{{site.github}}" class="icon fa-github" rel="nofollow"><span class="label">GitHub</span></a></li>
+							<li><a href="https://linkedin.com/in/{{site.linkedin}}" class="icon fa-linkedin" rel="nofollow"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://instagram.com/{{site.instagram}}" class="icon fa-instagram" rel="nofollow"><span class="label">Instagram</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+				<div id="main">
+
+					<!-- Post -->
+					<section class="post">
+						<p>
+              <h2>$ whoami</h2>
+              <span class="image left"><img src="{{ "/images/profile.jpg" | absolute_url }}" alt="" /></span>
+              My name is Ayush Goel and I am a second year Computer Science and Computational Mathematics student at <a href="https://www.rit.edu">Rochester Institute of Technology</a>.
+              I am also part of <a href="https://www.csh.rit.edu/">Computer Science House</a>, an organization dedicated towards helping students grow through hands-on learning and social environment.
+
+              <!-- <div class="container" style="clear: both; margin: 0 auto; text-align: center;">
+                <h2 style="text-align: left;"> My Expertise </h2>
+                  <div>
+                    <h3>Code</h3>
+                    <i class="devicon-python-plain-wordmark colored" style="font-size: 5rem; padding: 5px;"></i>
+                    <i class="devicon-java-plain-wordmark colored" style="font-size: 5rem; padding: 5px;"></i>
+                  </div>
+                  <br>
+                  <div>
+                    <h3>Tools</h3>
+                    <i class="devicon-github-plain-wordmark colored" style="font-size: 5rem; padding: 5px;"></i>
+                    <i class="devicon-debian-plain-wordmark colored" style="font-size: 5rem; padding: 5px;"></i>
+                    <i class="devicon-slack-plain-wordmark colored" style="font-size: 5rem; padding: 5px;"></i>
+                    <i class="devicon-atom-original colored" style="font-size: 5rem; padding: 5px;"></i>
+                    <i class="devicon-jetbrains-plain colored" style="font-size: 5rem; padding: 5px;"></i>
+                    <i class="devicon-trello-plain colored" style="font-size: 5rem; padding: 5px;"></i>
+                  </div>
+                  <br>
+                  <div>
+                    <h3>Design</h3>
+                    <i class="devicon-html5-plain-wordmark" style="font-size: 5rem; padding: 5px;"></i>
+                    <i class="devicon-bootstrap-plain colored" style="font-size: 5rem; padding: 5px;"></i>
+                  </div>
+              </div> -->
+            </p>
+					</section>
+
+					<!-- Footer -->
+						<footer>
+              <ul class="actions">
+								<li><a href="{{ "/blog/" | absolute_url }}" class="button">My Blog</a></li>
+              </ul>
+						</footer>
+					</div>
+
+				<!-- Footer -->
+        <!-- {% include foot.html %} -->
+
+			</div>
+
+			<!-- Scripts -->
+			{% include scripts-main.html %}
+			{% include tracking.html %}
+
+	</body>
+</html>

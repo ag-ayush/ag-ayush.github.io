@@ -1,20 +1,64 @@
-# Site settings
-title: Ayush Goel
-description: Software Engineer
-baseurl: ""
+# Site
+title:              Ayush Goel
+bio:                'Personal Website'
+description:        "Personal Website"
+locale:             en_US
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site
 
-timezone: America/New_York
+defaults:
+- scope:
+    path: ''
+    type: posts
+  values:
+    permalink: "/blog/:title/"
+    layout: post
+    author:
 
-# User settings
-username: Ayush Goel
-user_description: Hello! My name is Ayush Goel and I am pursuing a Computer Science Bachelor's Degree at Rochester Institute of Technology. I am a member of Computer Science House as well.
-user_title: Computer Scientist
-email: ag.goelayush@gmail.com
-github_username:  ag-ayush
+# Jekyll
+permalink:          /blog/:title/
+markdown:           kramdown
+highlighter:        rouge
+kramdown:
+  auto_ids:         true
+  footnote_nr:      1
+  entity_output:    as_char
+  toc_levels:       1..6
+  enable_coderay:   false
+mathjax:            true
+sass:
+  sass_dir:         _sass
+  style:            compressed
 
-# Google-analytics
-google-analytics:
-  id: ""
+# Comments
+disqus_shortname:   default
 
-exclude: ['package.json', 'src']
-include: ['node_modules']
+# Social
+analytics-id:       "default"
+# twitter:            default
+# facebook:           default
+instagram:          ag.goel
+github:             ag-ayush
+linkedin:           ayush-goel-589ba215a
+
+# personal
+location:           Rochester, NY
+phone:              315-572-6532
+email:              ag.goelayush@gmail.com
+
+# Gems
+gems:
+  - jekyll-mentions
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-gist
+  - jekyll-paginate
+
+paginate: 6
+paginate_path: "/blog/page:num/"
+
+jekyll-mentions:
+    base_url: https://github.com
+
+# Exclude list
+exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, LICENSE, Rakefile, old]
