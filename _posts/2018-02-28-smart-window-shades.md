@@ -3,7 +3,7 @@ layout: post
 title: "Smart Window Shades"
 date: 2018-03-01
 excerpt: "A web service, written using Python flask and bootstrap, that allows one to control their window shades using a website."
-image: "/images/smart-window-shades.jpg"
+image: "/images/smart_window_shades.jpg"
 ---
 ## Summary
 Smart shades is a web service that allows one to control their window shades using a website.
