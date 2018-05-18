@@ -25,7 +25,7 @@ I also use [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) instead of bas
 
 ### Application Launcher
 With a wm, you need to have an application launcher. I am currently using [rofi](https://github.com/DaveDavenport/rofi). My configuration:
-<span class="image fit"><img src="{{ "/images/rofi.jpg" | absolute_url }}" alt="" /></span>
+<span class="image fit"><img src="{{ "/images/rofi.png" | absolute_url }}" alt="" /></span>
 
 ### Nautilus
 Once again, Arc theme for icons and for the GTK theme.
