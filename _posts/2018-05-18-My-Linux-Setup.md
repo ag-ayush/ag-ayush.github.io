@@ -2,7 +2,7 @@
 layout: post
 title: "My Linux Setup"
 date: 2018-05-18
-excerpt: "I picked up Linux as my daily driver when I started college, nearly a year ago. Coding and using tools such as git felt much more natural on Linux than they ever did on Windows. After a few months of getting used to Linux, I decided to explore customizing Linux, and this blog explores the outcome."
+excerpt: "I picked up Linux as my daily driver when I started college, nearly a year ago. Coding and using tools such as git felt much more natural on it than they ever did on Windows. After a few months of getting used to Linux, I decided to customize it, and this blog explores the outcome."
 image: "/images/setup.jpg"
 ---
 ## Distro
