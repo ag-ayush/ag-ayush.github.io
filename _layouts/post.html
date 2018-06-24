@@ -37,8 +37,8 @@
 				<div id="main">
           <section class="post">
     				<header class="major">
-      				<span class="date">{{page.date | date_to_string}}</span>
       				<h1>{{page.title}}</h1>
+							<span class="date">{{site.title}} | {{page.date | date_to_string}} | <a href="{{page.git}}" class="icon fa-github" style="color:#4d4d4d" rel="nofollow"><span class="label">GitHub</span></a></span>
       				<p>{{page.excerpt}}</p>
       			</header>
       			<div class="image main"><img src="{{page.image}}" alt=""></div>
@@ -74,13 +74,15 @@
 				<!-- Footer -->
 					<footer>
             <ul class="actions">
-							{% if page.previous.url %}
-								<li><a href="{{ site.baseurl }}{{ page.previous.url }}" class="button">Previous Post</a></li>
-							{% endif %}
-              <!-- <li><a href="{{ "/blog/" | absolute_url }}" class="button">My Blog</a></li> -->
-							{% if page.next.url %}
-								<li><a href="{{ site.baseurl }}{{ page.next.url }}" class="button">Next Post</a></li>
-							{% endif %}
+							<div class="btn-group" role="group" aria-label="Basic example">
+								{% if page.previous.url %}
+									<li><a href="{{ site.baseurl }}{{ page.previous.url }}" class="button" style="width: 175px;">Previous Post</a></li>
+								{% endif %}
+	              <!-- <li><a href="{{ "/blog/" | absolute_url }}" class="button">My Blog</a></li> -->
+								{% if page.next.url %}
+									<li><a href="{{ site.baseurl }}{{ page.next.url }}" class="button" style="width: 175px;">Next Post</a></li>
+								{% endif %}
+						</div>
             </ul>
 					</footer>
 				</div>

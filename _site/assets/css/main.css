@@ -2722,6 +2722,7 @@
 			height: 1;
 			margin: 0 0 1rem 0;
 			position: relative;
+			color: #4d4d4d
 		}
 
 		header > p {
@@ -2765,17 +2766,17 @@
 
 			header.major > .date {
 				font-size: 1rem;
-				margin: 0 0 4rem 0;
+				margin: 0 0 2rem 0;
 			}
 
-				header.major > .date:before, header.major > .date:after {
+				/* header.major > .date:before, header.major > .date:after {
 					content: '';
 					display: block;
 					position: absolute;
 					top: 50%;
 					width: calc(50% - 6rem);
 					border-top: solid 2px;
-				}
+				} */
 
 				header.major > .date:before {
 					left: 0;
