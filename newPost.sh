@@ -5,6 +5,7 @@ read -p "Date [$(date +%Y-%m-%d)]: " date
 # read -p "Categories (space-separated): " categories
 read -p "Description: " description
 read -p "Post Image URL (full size): " image
+read -p "GitHub: " git
 
 if [ -z "$date" ] # Default to current date
 then
@@ -27,7 +28,8 @@ add "date: $date"
 # do
 #     add "    - $category"
 # done
-add "description: $description"
+add "excerpt: $description"
 add "image: $image"
+add "git: " $git"
 add "---\n"
 add "Post content goes here!"
