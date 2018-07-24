@@ -1,7 +1,7 @@
 ---
 layout: post
 title: An Intro to Git
-date: 2018-07-03
+date: 2018-07-24
 excerpt: This is a guide for using git as your version control system.
 image: /images/intro-to-git/homepage.jpg
 git:
