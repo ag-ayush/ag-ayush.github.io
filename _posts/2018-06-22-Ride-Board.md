@@ -28,7 +28,7 @@ The application had an okay UI when it was first developed, but I figured it cou
 As a result, I reformatted the application and over the last week, I was able to improve the UI significantly.
 
 In the process of reformatting, I decided to change the forms as well.
-Originally we were using a drop-down UI for picking date and time, but the application now uses a [date-time picker](https://tempusdominus.github.io/Bootstrap-4/).
+Originally we were using a drop-down UI for picking date and time, but the application now uses a [date-time picker](https://tempusdominus.github.io/bootstrap-4/).
 This also helped me gain experience in using Flask WTForms, they certainly make the process quite straightforward.
 
 <span class="image fit"><img src="{{ "/images/ride-board/form.jpg" | absolute_url }}" alt="" /></span>
