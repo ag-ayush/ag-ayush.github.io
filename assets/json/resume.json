@@ -20,6 +20,7 @@
     {
       "name": "Intuit",
       "position": "Senior Software Engineer",
+      "location": "San Diego, CA",
       "url": "https://www.intuit.com",
       "startDate": "2024-08-01",
       "endDate": "",
@@ -36,6 +37,7 @@
     {
       "name": "Intuit",
       "position": "Software Engineer II",
+      "location": "San Diego, CA",
       "url": "https://www.intuit.com",
       "startDate": "2022-07-01",
       "endDate": "2024-08-01",
@@ -50,6 +52,7 @@
     {
       "name": "Intuit",
       "position": "Software Engineering Intern",
+      "location": "Remote",
       "url": "https://www.intuit.com",
       "startDate": "2021-05-01",
       "endDate": "2021-08-01",
@@ -62,6 +65,7 @@
     {
       "name": "Rochester Institute of Technology",
       "position": "Research Software Engineer",
+      "location": "Rochester, NY",
       "url": "https://www.rit.edu",
       "startDate": "2020-05-01",
       "endDate": "2021-05-01",
@@ -75,6 +79,7 @@
     {
       "name": "Intuit",
       "position": "Software Engineering Co-op",
+      "location": "San Diego, CA",
       "url": "https://www.intuit.com",
       "startDate": "2019-05-01",
       "endDate": "2019-12-01",
