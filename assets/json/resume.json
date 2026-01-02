@@ -123,81 +123,43 @@
       "name": "Programming Languages",
       "level": "Expert",
       "icon": "fa-solid fa-code",
-      "keywords": [
-        "Kotlin",
-        "Java",
-        "Python",
-        "SQL",
-        "Groovy"
-      ]
+      "keywords": ["Kotlin", "Java", "Python", "SQL", "Groovy"]
     },
     {
       "name": "Backend & Frameworks",
       "level": "Expert",
       "icon": "fa-solid fa-server",
-      "keywords": [
-        "Spring Boot",
-        "Maven",
-        "Resilience4j",
-        "OpenAPI",
-        "GraphQL",
-        "Swagger"
-      ]
+      "keywords": ["Spring Boot", "Maven", "Resilience4j", "OpenAPI", "GraphQL", "Swagger"]
     },
     {
       "name": "Databases & Caching",
       "level": "Expert",
       "icon": "fa-solid fa-database",
-      "keywords": [
-        "DynamoDB",
-        "Redis",
-        "SQL"
-      ]
+      "keywords": ["DynamoDB", "Redis", "SQL"]
     },
     {
       "name": "Cloud & Infrastructure",
       "level": "Expert",
       "icon": "fa-solid fa-cloud",
-      "keywords": [
-        "AWS",
-        "Docker",
-        "Kubernetes",
-        "AWS CDK",
-        "Terraform",
-        "S3",
-        "LocalStack"
-      ]
+      "keywords": ["AWS", "Docker", "Kubernetes", "AWS CDK", "Terraform", "S3", "LocalStack"]
     },
     {
       "name": "DevOps & CI/CD",
       "level": "Expert",
       "icon": "fa-solid fa-gears",
-      "keywords": [
-        "ArgoCD",
-        "Jenkins",
-        "git",
-        "Gatling"
-      ]
+      "keywords": ["ArgoCD", "Jenkins", "git", "Gatling"]
     },
     {
       "name": "Monitoring & Analytics",
       "level": "Advanced",
       "icon": "fa-solid fa-chart-line",
-      "keywords": [
-        "Wavefront",
-        "Splunk",
-        "Databricks",
-        "Tableau"
-      ]
+      "keywords": ["Wavefront", "Splunk", "Databricks", "Tableau"]
     },
     {
       "name": "Collaboration Tools",
       "level": "Advanced",
       "icon": "fa-solid fa-users",
-      "keywords": [
-        "Confluence",
-        "Agile"
-      ]
+      "keywords": ["Confluence", "Agile"]
     }
   ],
   "languages": [],
