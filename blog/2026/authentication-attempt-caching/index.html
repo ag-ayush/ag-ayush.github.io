@@ -4,35 +4,35 @@
     participant Client
     participant Service
     participant DynamoDB
-    
+
     Client-&gt;&gt;Service: Log In (Success)
     Service-&gt;&gt;DynamoDB: Write Success Attempt
     Note over DynamoDB: 1 write + 2 GSI writes&lt;br/&gt;+ TTL delete after 48h
-    
+
     Client-&gt;&gt;Service: Log In (Success)
     Service-&gt;&gt;DynamoDB: Write Success Attempt
-    
+
     Client-&gt;&gt;Service: Log In (Success)
     Service-&gt;&gt;DynamoDB: Write Success Attempt
-    
+
     Note over Service,DynamoDB: Heavy users: 1000s of writes/day
 </code></pre> <h3 id="architecture-after">Architecture: After</h3> <pre><code class="language-mermaid">sequenceDiagram
     participant Client
     participant Service
     participant Redis
     participant DynamoDB
-    
+
     Client-&gt;&gt;Service: Log In (Success)
     Service-&gt;&gt;Redis: Check last attempt
     Redis--&gt;&gt;Service: Not found
     Service-&gt;&gt;DynamoDB: Write Success Attempt
     Service-&gt;&gt;Redis: Cache Success (24h TTL)
-    
+
     Client-&gt;&gt;Service: Log In (Success)
     Service-&gt;&gt;Redis: Check last attempt
     Redis--&gt;&gt;Service: Success (cache hit)
     Note over Service: Skip write - already successful
-    
+
     Client-&gt;&gt;Service: Log In (Failure)
     Service-&gt;&gt;DynamoDB: Write Failure Attempt
     Service-&gt;&gt;DynamoDB: Calculate lockout policy
