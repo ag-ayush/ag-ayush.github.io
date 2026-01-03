@@ -39,17 +39,17 @@ sequenceDiagram
     participant Client
     participant Service
     participant DynamoDB
-    
+
     Client->>Service: Log In (Success)
     Service->>DynamoDB: Write Success Attempt
     Note over DynamoDB: 1 write + 2 GSI writes<br/>+ TTL delete after 48h
-    
+
     Client->>Service: Log In (Success)
     Service->>DynamoDB: Write Success Attempt
-    
+
     Client->>Service: Log In (Success)
     Service->>DynamoDB: Write Success Attempt
-    
+
     Note over Service,DynamoDB: Heavy users: 1000s of writes/day
 ```
 
@@ -61,18 +61,18 @@ sequenceDiagram
     participant Service
     participant Redis
     participant DynamoDB
-    
+
     Client->>Service: Log In (Success)
     Service->>Redis: Check last attempt
     Redis-->>Service: Not found
     Service->>DynamoDB: Write Success Attempt
     Service->>Redis: Cache Success (24h TTL)
-    
+
     Client->>Service: Log In (Success)
     Service->>Redis: Check last attempt
     Redis-->>Service: Success (cache hit)
     Note over Service: Skip write - already successful
-    
+
     Client->>Service: Log In (Failure)
     Service->>DynamoDB: Write Failure Attempt
     Service->>DynamoDB: Calculate lockout policy
@@ -125,12 +125,12 @@ We chose a 24-hour TTL with ±10% jitter because most users log in once per day,
 
 ## Results
 
-| Metric | Improvement |
-|--------|-------------|
-| **PreProd Write Volume** | 98% reduction |
-| **Production Write Volume** | 75% reduction |
+| Metric                            | Improvement                             |
+| --------------------------------- | --------------------------------------- |
+| **PreProd Write Volume**          | 98% reduction                           |
+| **Production Write Volume**       | 75% reduction                           |
 | **DynamoDB Consumed Write Units** | 120k → 20k baseline<br/>320k → 60k peak |
-| **Cost Impact** | ~90% reduction in DynamoDB costs |
+| **Cost Impact**                   | ~90% reduction in DynamoDB costs        |
 
 The difference between environments reflects traffic patterns. Test account reuse in preproduction creates higher cache hit rates, while production sees more first-time daily logins.
 
