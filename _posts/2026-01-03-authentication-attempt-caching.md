@@ -1,9 +1,8 @@
 ---
 layout: post
-title: Designing for Your Access Pattern
-date: 2026-01-03 12:00:00
-description: How understanding what we actually needed (recent state) vs what we were storing (complete history) reduced database writes by 75%
-tags: architecture redis dynamodb caching performance
+title: Stop Writing Data You Never Read
+date: 2026-01-04 12:00:00
+description: At 2,600 TPS, we were executing 85M operations daily for data we rarely read. Here's how understanding our access pattern reduced writes by 75% using Redis.
 categories: engineering
 mermaid:
   enabled: true
@@ -19,6 +18,7 @@ This created four problems:
 1. **Write Amplification**: Each success attempt generated 3 writes (primary table + 2 GSI updates), replicated across regions
 2. **Cost Pressure**: Despite being relatively small in data size, TTL deletions, cross-region replication, and multiple GSIs made this table disproportionately expensive
 3. **Availability Risk**: Intermittent AWS service degradation caused error spikes that were compounded by upstream retries, affecting even successful logins
+4. **GSI Partition Risk**: The GSI stores a secondary identifier shared across all entries for a user. With DynamoDB's 10 GB limit per partition and increasing write traffic, we risked hitting capacity constraints that would throttle writes for affected users
 
 The aha moment: we had a write-heavy operation for temporal data we rarely read. We only needed this data when logins failed, but with a high success rate, we were slowing down the happy path for everyone with no real benefit.
 
