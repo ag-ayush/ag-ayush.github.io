@@ -132,6 +132,10 @@ We chose a 24-hour TTL with ±10% jitter because most users log in once per day,
 | **DynamoDB Consumed Write Units** | 120k → 20k baseline<br/>320k → 60k peak |
 | **Cost Impact**                   | ~90% reduction in DynamoDB costs        |
 
+The graph below shows the production impact over time. The sharp drop in August 2025 marks when we rolled out the caching solution:
+
+{% include figure.liquid loading="eager" path="assets/img/authentication_attempt_result.png" class="img-fluid rounded z-depth-1" zoomable=true caption="Write Capacity Units consumed by the authentication attempts table over one year, showing the impact of caching successful attempts." %}
+
 The difference between environments reflects traffic patterns. Test account reuse in preproduction creates higher cache hit rates, while production sees more first-time daily logins.
 
 ## Conclusion
