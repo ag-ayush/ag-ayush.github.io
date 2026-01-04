@@ -23,11 +23,11 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-designing-for-your-access-pattern",
+        },{id: "post-stop-writing-data-you-never-read",
         
-          title: "Designing for Your Access Pattern",
+          title: "Stop Writing Data You Never Read",
         
-        description: "How understanding what we actually needed (recent state) vs what we were storing (complete history) reduced database writes by 75%",
+        description: "At 2,600 TPS, we were executing 85M operations daily for data we rarely read. Here&#39;s how understanding our access pattern reduced writes by 75% using Redis.",
         section: "Posts",
         handler: () => {
           
