@@ -11,9 +11,7 @@ mermaid:
 
 ## The Problem
 
-We had a seemingly simple requirement: track login attempts for account lockout policies. Every successful login generated three database writes (primary table + two GSI updates). At peak traffic, we hit 2,600 TPS with 85 million operations daily, not counting TTL deletes. Write amplification hit us hard.
-
-This created four problems:
+We had a seemingly simple requirement: track login attempts for account lockout policies. Every successful login generated three database writes (primary table + two GSI updates). At peak traffic, we hit 2,600 TPS with 85 million operations daily, not counting TTL deletes.  This created four problems:
 
 1. **Write Amplification**: Each success attempt generated 3 writes (primary table + 2 GSI updates), replicated across regions
 2. **Cost Pressure**: Despite being relatively small in data size, TTL deletions, cross-region replication, and multiple GSIs made this table disproportionately expensive
@@ -94,7 +92,7 @@ Complete cache coverage, but this requires managing multiple failure events per 
 digid:attempts → {attemptId1: failureData, attemptId2: failureData, success: successData}
 ```
 
-**Blocker:** Valkey (our Redis implementation) doesn't support `HEXPIRE` ([Issue #2778](https://github.com/valkey-io/valkey/issues/2778)). Without this, we'd need separate Redis keys per failure attempt (memory inefficient) with cleanup jobs (operational complexity) to prevent stale objects.
+**Blocker:** Our deployed version of Redis doesn't support `HEXPIRE` ([Issue #2778](https://github.com/valkey-io/valkey/issues/2778)). Without this, we'd need separate Redis keys per failure attempt (memory inefficient) with cleanup jobs (operational complexity) to prevent stale objects.
 
 We'd also need a dedicated Redis cluster with `volatile-ttl` eviction policy since our existing cluster uses `allkeys-lru`. Standing up new infrastructure wasn't justified.
 
