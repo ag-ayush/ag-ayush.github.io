@@ -84,7 +84,7 @@ sequenceDiagram
 
 The question: cache everything, cache failures only, or cache successes only?
 
-**Option 1: Migrate entirely to Redis and eliminate DynamoDB**
+**Option 1: Migrate entirely to Redis and eliminate DynamoDB (✗)**
 
 Complete cache coverage, but this requires managing multiple failure events per user with individual TTLs. We evaluated Redis HASHes with per-field expiration (`HEXPIRE`) to store all attempts in one structure:
 
@@ -96,13 +96,13 @@ digid:attempts → {attemptId1: failureData, attemptId2: failureData, success: s
 
 We'd also need a dedicated Redis cluster with `volatile-ttl` eviction policy since our existing cluster uses `allkeys-lru`. Standing up new infrastructure wasn't justified.
 
-**Option 2: Cache only failures**
+**Option 2: Cache only failures (✗)**
 
 Fewer events to cache since failures are less frequent.
 
 **Rejected.** High-volume users like automated systems generate most of the write pressure through repeated successful logins. Caching failures doesn't solve the problem.
 
-**Option 3: Cache only successes** ✓
+**Option 3: Cache only successes (✓)**
 
 Single Redis key per user with simple SET/GET/DELETE operations. This addresses the dominant traffic pattern (repeated successes). Lockout calculations still use DynamoDB on failures, which is fine since failures are infrequent.
 
@@ -115,11 +115,11 @@ We designed the caching layer to fail gracefully. If Redis has issues, logins st
 - Circuit breakers for automatic failover during degradation
 - Feature flag as a kill switch
 
-Optimistic caching with pessimistic error handling.
+This gives us optimistic caching with pessimistic error handling.
 
 ### TTL Strategy
 
-We chose a 24-hour TTL with ±10% jitter because most users log in once per day, and the jitter prevents cache expiration thundering herds.
+We chose a 24-hour TTL with ±10% jitter to prevent cache expiration thundering herds.
 
 ## Results
 
@@ -130,11 +130,11 @@ We chose a 24-hour TTL with ±10% jitter because most users log in once per day,
 | **DynamoDB Consumed Write Units** | 120k → 20k baseline<br/>320k → 60k peak |
 | **Cost Impact**                   | ~90% reduction in DynamoDB costs        |
 
-The graph below shows the production impact over time. The sharp drop in August 2025 marks when we rolled out the caching solution:
+The graph below shows the production impact over time. The sharp drop in July 2025 marks when we rolled out the caching solution:
 
 {% include figure.liquid loading="eager" path="assets/img/authentication_attempt_result.png" class="img-fluid rounded z-depth-1" zoomable=true caption="Write Capacity Units consumed by the DynamoDB table in production over one year, showing the impact of caching successful attempts." %}
 
-The difference between environments reflects traffic patterns. Test account reuse in preproduction creates higher cache hit rates, while production sees more first-time daily logins.
+The difference in improvement between environments reflects traffic patterns. Test account reuse in preproduction creates higher cache hit rates, while production sees more unique daily logins.
 
 ## Conclusion
 
