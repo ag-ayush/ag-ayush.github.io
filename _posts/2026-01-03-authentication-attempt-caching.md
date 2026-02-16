@@ -2,11 +2,18 @@
 layout: post
 title: Stop Writing Data You Never Read
 date: 2026-01-04 12:00:00
-description: At 2,600 TPS, we were executing 85M operations daily for data we rarely read. Here's how understanding our access pattern reduced writes by 75% using Redis.
+description: At 2,600 TPS, we were executing 85M writes daily for data we rarely read. Here's how understanding our access pattern reduced writes by 75% using caching.
 categories: engineering
 mermaid:
   enabled: true
   zoomable: false
+tags:
+  - dynamodb
+  - performance
+  - aws
+  - architecture
+  - caching
+  - redis
 ---
 
 ## The Problem
