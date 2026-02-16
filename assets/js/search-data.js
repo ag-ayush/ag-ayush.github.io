@@ -23,11 +23,22 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-stop-writing-data-you-never-read",
+        },{id: "post-scaling-our-microservice-made-latency-worse-here-39-s-how-we-fixed-it",
+        
+          title: "Scaling Our Microservice Made Latency Worse—Here&#39;s How We Fixed It",
+        
+        description: "We prescale for EC2 headroom and regional failover during business-critical times. Low traffic left DynamoDB connections idle and the HTTP client we&#39;d chosen for fast pod startup closed them in ~5s. Here&#39;s how we fixed p99 with configurable idle timeout and TCP keepalive.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/prescaling-latency-backfire/";
+          
+        },
+      },{id: "post-stop-writing-data-you-never-read",
         
           title: "Stop Writing Data You Never Read",
         
-        description: "At 2,600 TPS, we were executing 85M operations daily for data we rarely read. Here&#39;s how understanding our access pattern reduced writes by 75% using Redis.",
+        description: "At 2,600 TPS, we were executing 85M writes daily for data we rarely read. Here&#39;s how understanding our access pattern reduced writes by 75% using caching.",
         section: "Posts",
         handler: () => {
           
