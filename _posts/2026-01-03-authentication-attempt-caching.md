@@ -18,7 +18,7 @@ tags:
 
 ## The Problem
 
-We had a seemingly simple requirement: track login attempts for account lockout policies. Every successful login generated three database writes (primary table + two GSI updates). At peak traffic, we hit 2,600 TPS with 85 million operations daily, not counting TTL deletes.  This created four problems:
+We had a seemingly simple requirement: track login attempts for account lockout policies. Every successful login generated three database writes (primary table + two GSI updates). At peak traffic, we hit 2,600 TPS with 85 million operations daily, not counting TTL deletes. This created four problems:
 
 1. **Write Amplification**: Each success attempt generated 3 writes (primary table + 2 GSI updates), replicated across regions
 2. **Cost Pressure**: Despite being relatively small in data size, TTL deletions, cross-region replication, and multiple GSIs made this table disproportionately expensive
