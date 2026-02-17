@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Scaling Our Microservice Made Latency Worse—Here's How We Fixed It
+title: Scaling Our Microservice Made Latency Worse - Here's How We Fixed It
 date: 2026-02-15 12:00:00
 description: We prescale for EC2 headroom and regional failover during business-critical times. Low traffic left DynamoDB connections idle and the HTTP client we'd chosen for fast pod startup closed them in ~5s. Here's how we fixed p99 with configurable idle timeout and TCP keepalive.
 categories: engineering
@@ -21,7 +21,7 @@ We prescale for seasonal peaks so we're not iced out of EC2 capacity and so we h
 
 The chart below shows write TPS on a single pod over a 5-minute window when the service is scaled up. Gaps of 30 seconds or more between writes are evident.
 
-{% include figure.liquid loading="eager" path="assets/img/write_tps_single_pod_5m.png" class="img-fluid rounded z-depth-1" zoomable=true caption="Write TPS on a single pod over a 5-minute window when scaled up. Gaps of 30+ seconds between writes are common." %}
+{% include figure.liquid loading="eager" path="assets/img/write_tps_single_pod_5m.png" class="img-fluid rounded z-depth-1" zoomable=true caption="Write TPS on a single pod over a 5-minute window when scaled up. Gaps of 30+ seconds between writes are evident." %}
 
 We observed elevated p99 latency in production from that prescaled capacity. We traced the increase in latency to DynamoDB writes and from there to the connection lifecycle of the DynamoDB client. Here's the chain we saw:
 
@@ -52,11 +52,11 @@ The service uses separate DynamoDB clients for reads and writes, with different 
 
 ### Why we were on UrlConnectionHttpClient in the first place
 
-Engineers had chosen UrlConnectionHttpClient for its light weight and quick start time, so pods could come up slightly faster than with ApacheHttpClient. That helped with cold start. It was the wrong tradeoff for this failure mode. UrlConnectionHttpClient has a ~5 second idle connection timeout that isn't configurable. Under prescale and low traffic, connections were closing quickly and new requests were paying full setup cost. The right fix was connection lifecycle (keepalive + configurable idle timeout), not a lighter or faster-starting client.
+Engineers had chosen UrlConnectionHttpClient for its lightweight footprint and quick start time, so pods could come up faster than with ApacheHttpClient. This helped with cold start but was the wrong tradeoff for this failure mode. UrlConnectionHttpClient has a ~5 second idle connection timeout that isn't configurable; under prescale and low traffic, connections closed quickly and new requests paid full setup cost. The right fix was connection lifecycle (keepalive + configurable idle timeout), not a lighter or faster-starting client.
 
 ### Options we didn't take
 
-**Adding writes to the periodic app health checks**, like the reads already have. That would keep the write client's connections warm. We didn't do it. The cost compounds. One write every 30 seconds × 200 pods per region × multiple regions is a lot of extra throughput and table load for the benefit.
+**Adding writes to the periodic app health checks**, like the reads already have, would keep the write client's connections warm. However, the cost compounds: one write every 30 seconds × 200 pods per region × 2 regions would add a lot of extra throughput and table load for the benefit.
 
 **Scheduled scaling.** Scale up only when we expect traffic to be high. The organization is working on this. It wasn't available to us for this fix, so we didn't depend on it.
 
