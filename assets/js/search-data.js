@@ -25,7 +25,7 @@ ninja.data = [{
           },
         },{id: "post-scaling-our-microservice-made-latency-worse-here-39-s-how-we-fixed-it",
         
-          title: "Scaling Our Microservice Made Latency Worse—Here&#39;s How We Fixed It",
+          title: "Scaling Our Microservice Made Latency Worse - Here&#39;s How We Fixed It",
         
         description: "We prescale for EC2 headroom and regional failover during business-critical times. Low traffic left DynamoDB connections idle and the HTTP client we&#39;d chosen for fast pod startup closed them in ~5s. Here&#39;s how we fixed p99 with configurable idle timeout and TCP keepalive.",
         section: "Posts",
