@@ -11,13 +11,13 @@ tags:
   - architecture
 ---
 
-We scale for reliability, but low traffic can leave connections idle—and idle connections will eventually be terminated. When that happens, the extra capacity can backfire.
+We scale for reliability, but low traffic can leave connections idle, and idle connections will eventually be terminated. When that happens, the extra capacity can backfire.
 
 ## The Problem
 
-We have a service that's high-throughput, up to ~50k TPS, and latency-sensitive. It sits at the bottom of the stack—a foundational dependency that many upstream services call, so its latency compounds. 99% of traffic to this service is read traffic, and the remainder involves writes. The write path is where the problem showed up.
+We have a service that's high-throughput, up to ~50k TPS, and latency-sensitive. It sits at the bottom of the stack - a foundational dependency that many upstream services call, so its latency compounds. 99% of traffic to this service is read traffic, and the remainder involves writes. The write path is where the problem showed up.
 
-We prescale for seasonal peaks so we're not iced out of EC2 capacity and so we have capacity ready for regional failover during business-critical times. The tradeoff is that we often have more pods than current traffic needs. Many pods see low or sporadic traffic, and on the write path that means long gaps between requests.
+We prescale so we're not iced out of EC2 capacity and so we have capacity ready for regional failover during business-critical times. The tradeoff is that we often have more pods than current traffic needs. Many pods see low or sporadic traffic, and on the write path that means long gaps between requests.
 
 The chart below shows write TPS on a single pod over a 5-minute window when the service is scaled up. Gaps of 30 seconds or more between writes are evident.
 
@@ -26,8 +26,8 @@ The chart below shows write TPS on a single pod over a 5-minute window when the 
 We observed elevated p99 latency in production from that prescaled capacity. We traced the increase in latency to DynamoDB writes and from there to the connection lifecycle of the DynamoDB client. Here's the chain we saw:
 
 1. **Idle connections closed.** On pods with little traffic, idle DynamoDB connections were closed.
-2. **Short client timeout.** We had chosen UrlConnectionHttpClient for its light weight and quick start time, which let pods come up slightly faster than with ApacheHttpClient. That client closes idle connections after ~5 seconds and doesn't let you configure it ([GitHub #3941](https://github.com/aws/aws-sdk-java-v2/issues/3941)).
-3. **New connections on demand.** When a request finally arrived, it often had to establish a new connection to DynamoDB. Creating new TCP connections is expensive—cold connections cost on the order of 40–80 ms; reused connections are ~1–3 ms. At scale, that gap is massive.
+2. **Short client timeout.** We had chosen UrlConnectionHttpClient for its lightweight footprint and quick start time, which let pods come up slightly faster than with ApacheHttpClient. That client closes idle connections after ~5 seconds and doesn't let you configure it ([GitHub #3941](https://github.com/aws/aws-sdk-java-v2/issues/3941)).
+3. **New connections on demand.** When a request finally arrived, it often had to establish a new connection to DynamoDB (TCP + TLS + metadata). Creating connections on demand is expensive: cold connections cost on the order of 40–80 ms; reused connections are ~1–3 ms. At scale, that gap is massive.
 4. **Latency spike.** That setup cost showed up in p99.
 
 What we missed: we'd prescaled for reliability but hadn't kept connections warm. The HTTP client we'd chosen for fast startup had a short idle timeout, which made the prescaling backfire.
@@ -42,7 +42,7 @@ We made three changes:
 2. **Enable TCP keepalive** so idle connections are less likely to be torn down by the network or the server.
 3. **Set a configurable connection idle timeout** (e.g. 60 seconds) so we control when the client closes idle connections instead of being stuck at ~5s.
 
-No synthetic warmup traffic, no change to scaling policy—just picking the right HTTP client and tuning connection lifecycle.
+No synthetic warmup traffic, no change to scaling policy - just picking the right HTTP client and tuning connection lifecycle.
 
 ## Implementation Details
 
@@ -56,7 +56,7 @@ Engineers had chosen UrlConnectionHttpClient for its lightweight footprint and q
 
 ### Options we didn't take
 
-**Adding writes to the periodic app health checks**, like the reads already have, would keep the write client's connections warm. However, the cost compounds: one write every 30 seconds × 200 pods per region × 2 regions would add a lot of extra throughput and table load for the benefit.
+**Adding writes to the periodic app health checks**, like the reads already have, would keep the write client's connections warm - but we didn't do it. The cost compounds: one write every 30 seconds × 200 pods per region × 2 regions would add a lot of extra throughput and table load for the benefit.
 
 **Scheduled scaling.** Scale up only when we expect traffic to be high. The organization is working on this. It wasn't available to us for this fix, so we didn't depend on it.
 
@@ -70,4 +70,4 @@ Overall P99 improved from 220ms to 100ms. We stopped observing latency increases
 
 We added capacity for business-critical traffic peaks, but prescaling without keeping connections warm can backfire. When traffic stayed low, connections sat idle and the HTTP client we'd chosen for fast pod startup closed them in ~5 seconds, so new requests paid the connection-setup cost and p99 went up. The fix was switching to an HTTP client with configurable idle timeout and TCP keepalive, not synthetic traffic or a different scaling strategy.
 
-For services like ours—high-throughput and latency-sensitive—connection lifecycle matters as much as capacity. The same choice that helped with cold start (a lighter client) was the wrong one once idle connections started getting terminated.
+For services like ours - high-throughput and latency-sensitive - connection lifecycle matters as much as capacity. The same choice that helped with cold start (a lighter client) was the wrong one once idle connections started getting terminated.
