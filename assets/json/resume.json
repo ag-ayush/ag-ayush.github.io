@@ -26,12 +26,16 @@
       "endDate": "",
       "summary": "Leading critical identity and authentication initiatives for Intuit's platform serving hundreds of millions of users.",
       "highlights": [
-        "Owned end-to-end design and delivery of mobile Driver's License (mDL) as account recovery authenticator across five states (CA, GA, CO, OH, IL)",
-        "Designed Redis caching strategy that reduced DynamoDB write traffic by ~75% in production and delivered ~$10K/month in infrastructure savings",
-        "Led cross-team delivery of Credit Karma sign-in initiatives contributing to $100M+ in downstream revenue impact",
-        "Set operational reliability strategy for Credential Service, migrating production traffic with zero customer impact",
-        "Championed AI-assisted development workflows, compressing multi-person sprint efforts into single sprint delivery",
-        "Served as primary on-call responder for high-severity incidents, leading deep root-cause analysis"
+        "Owned the end-to-end design and delivery of mobile driver’s license (mDL) as an account recovery authenticator, partnering with backend and native mobile teams to launch across five states (CA, GA, CO, OH, IL) and expanding supported recovery options for high-assurance users.",
+        "Designed and implemented Redis caching strategy for temporal authentication data after identifying it as a reliability and cost risk; reduced DynamoDB write traffic by ~75% in production (98% in pre-production), mitigated customer impact from AWS system errors, and delivered ~$20K/month in recurring infrastructure savings.",
+        "Drove cross-platform design decisions across Identity and Fraud, aligning risk-based authentication flows while introducing phishing-resistant factors to strengthen account security.",
+        "Identified and eliminated scale-related latency bottlenecks, delivering a 40% reduction in overall service latency and materially reducing customer-impacting flow incidents.",
+        "Led cross-team delivery of Credit Karma sign-in and provisional account initiatives, rapidly ramping into Sign-In Orchestration (SIO) and owning Front Door experience work; unblocked reliability and CI issues that enabled on-time launch and contributed to $100M+ in downstream revenue impact.",
+        "Set and executed operational reliability strategy for Credential Service as service owner, migrating production traffic to a dedicated AuthN cluster with zero customer impact, strengthening observability, and helping deliver a full tax season with no major outages across AuthN services.",
+        "Drove architectural and platform-level improvements across Identity by identifying systemic reliability and data-consistency risks, implementing preventative fixes (caching for resiliency), and reducing recurring operational and infrastructure costs.",
+        "Unblocked cross-team delivery by contributing frontend code changes , leveraging AI-assisted development to prevent dependency bottlenecks and maintain epic timelines.",
+        "Championed adoption of AI-assisted development workflows, personally demonstrating productivity gains by compressing multi-person sprint efforts into single sprint delivery; influenced broader team experimentation with AI to increase delivery velocity and quality.",
+        "Served as primary on-call responder for high-severity incidents, leading deep root-cause analysis across service mesh, AWS infrastructure, and cross-region dependencies; prevented repeat incidents through structural fixes rather than point solutions."
       ]
     },
     {
@@ -43,10 +47,10 @@
       "endDate": "2024-08-01",
       "summary": "Service owner for Tier-1 Credential Service supporting hundreds of millions of users via DynamoDB-backed REST and GraphQL APIs on AWS EKS.",
       "highlights": [
-        "Led large-scale Identity 2.0 migration of 620M identities, 2.5B credential records, and 21B user attributes with 100% on-time completion",
-        "Reduced infrastructure spend by $50K/month through cost-optimization strategies",
-        "Improved developer productivity by redesigning CI/CD pipelines and introducing improved autoscaling",
-        "Owned and delivered core APIs for Identity 1.0 → 2.0 transition"
+        "Service owner for a Tier-1 Credential Service (Kotlin, Spring Boot), supporting hundreds of millions of users via DynamoDB-backed OpenAPI REST and GraphQL APIs; deployed on AWS EKS with ArgoCD-managed canary.",
+        "Led large-scale Identity 2.0 migration, ensuring 100% on-time completion by migrating 620M identities, 2.5B credential records, and 21B user attributes; personally resolved ~10% of complex edge cases via custom scripts, enabling safe shutdown of legacy 1.0 systems.",
+        "Reduced infrastructure spend by $50K/month by identifying inefficiencies and implementing cost-optimization strategies across Credential Service and eventing pipelines without sacrificing reliability or latency.",
+        "Improved developer productivity and system reliability by redesigning CI/CD pipelines (Jenkins), introducing improved autoscaling, and refactoring service architecture to reduce operational burden and failure modes."
       ]
     },
     {
@@ -60,20 +64,6 @@
       "highlights": [
         "Leveraged ArgoCD, Jenkins, Terraform, Kubernetes, and service mesh to improve deployment safety",
         "Analyzed deployment metrics to identify velocity bottlenecks and drove Agile process improvements"
-      ]
-    },
-    {
-      "name": "Rochester Institute of Technology",
-      "position": "Research Software Engineer",
-      "location": "Rochester, NY",
-      "url": "https://www.rit.edu",
-      "startDate": "2020-05-01",
-      "endDate": "2021-05-01",
-      "summary": "Developed research applications for cybersecurity analysis and prediction.",
-      "highlights": [
-        "Developed ASSERT, a Java/Python application for synthesizing and analyzing cyberattack behavior models",
-        "Refactored research prototype into production-ready, containerized system",
-        "Built dynamic visualization dashboards using Python, Dash, and Plotly"
       ]
     },
     {
@@ -123,43 +113,81 @@
       "name": "Programming Languages",
       "level": "Expert",
       "icon": "fa-solid fa-code",
-      "keywords": ["Kotlin", "Java", "Python", "SQL", "Groovy"]
+      "keywords": [
+        "Kotlin",
+        "Java",
+        "Python",
+        "SQL",
+        "Groovy"
+      ]
     },
     {
       "name": "Backend & Frameworks",
       "level": "Expert",
       "icon": "fa-solid fa-server",
-      "keywords": ["Spring Boot", "Maven", "Resilience4j", "OpenAPI", "GraphQL", "Swagger"]
+      "keywords": [
+        "Spring Boot",
+        "Maven",
+        "Resilience4j",
+        "OpenAPI",
+        "GraphQL",
+        "Swagger"
+      ]
     },
     {
       "name": "Databases & Caching",
       "level": "Expert",
       "icon": "fa-solid fa-database",
-      "keywords": ["DynamoDB", "Redis", "SQL"]
+      "keywords": [
+        "DynamoDB",
+        "Redis",
+        "SQL"
+      ]
     },
     {
       "name": "Cloud & Infrastructure",
       "level": "Expert",
       "icon": "fa-solid fa-cloud",
-      "keywords": ["AWS", "Docker", "Kubernetes", "AWS CDK", "Terraform", "S3", "LocalStack"]
+      "keywords": [
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "AWS CDK",
+        "Terraform",
+        "S3",
+        "LocalStack"
+      ]
     },
     {
       "name": "DevOps & CI/CD",
       "level": "Expert",
       "icon": "fa-solid fa-gears",
-      "keywords": ["ArgoCD", "Jenkins", "git", "Gatling"]
+      "keywords": [
+        "ArgoCD",
+        "Jenkins",
+        "git",
+        "Gatling"
+      ]
     },
     {
       "name": "Monitoring & Analytics",
       "level": "Advanced",
       "icon": "fa-solid fa-chart-line",
-      "keywords": ["Wavefront", "Splunk", "Databricks", "Tableau"]
+      "keywords": [
+        "Wavefront",
+        "Splunk",
+        "Databricks",
+        "Tableau"
+      ]
     },
     {
       "name": "Collaboration Tools",
       "level": "Advanced",
       "icon": "fa-solid fa-users",
-      "keywords": ["Confluence", "Agile"]
+      "keywords": [
+        "Confluence",
+        "Agile"
+      ]
     }
   ],
   "languages": [],
