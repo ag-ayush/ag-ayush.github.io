@@ -17,7 +17,7 @@ Then we plug in an AI coding agent, update the context files, tweak the tools it
 
 That's the gap eval harnesses close.
 
-One naming note, because the word "harness" gets overloaded quickly: the **agent harness** is everything around the model that shapes its behavior — context files, tools, permissions, feedback loops, and workflow constraints. The **eval harness** is the measurement system that reruns frozen tasks to tell you whether changes to that agent harness actually helped.
+That’s the gap eval harnesses close — where “eval harness” means the measurement system that reruns frozen tasks to check whether changes to the agent harness (context files, tools, permissions, feedback loops, workflow constraints) actually helped.
 
 ---
 
@@ -30,8 +30,6 @@ You update the context files. You apply them to the next PR. That PR is a differ
 That's not an A/B test. It's not even an experiment.
 
 The eval harness solves this by manufacturing the repeatable scenario on purpose. Freeze the codebase at a known commit. Freeze the task. Freeze the reference solution. Now change only the agent harness, re-run, and compare. Everything else is held constant.
-
-One honest caveat up front, because the whole argument rests on it: freezing the codebase, the task, and the reference makes the *benchmark* deterministic. It does not make the *agent* deterministic — run the same case twice and the score will drift a little on its own. So the claim isn't "deterministic before versus after." It's narrower and more defensible: the benchmark is fixed, so a consistent shift in scores is attributable to the one thing that changed — the agent harness. (Separating that shift from natural variance comes later, once we have scores in hand.)
 
 SWE-bench — the benchmark most coding agent vendors cite for capability claims — proved this pattern at scale. Each task is drawn from a real GitHub issue and corresponding pull request, with the repository frozen before the fix landed. An agent gets the issue and the codebase at that pre-fix commit. It never sees the solution. A candidate is resolved when it makes the relevant failing tests pass without breaking the relevant passing tests. Same problem, same benchmark protocol, comparable results.
 
