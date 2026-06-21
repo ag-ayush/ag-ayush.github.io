@@ -926,6 +926,11 @@ pre {
     border-radius: 0;
     margin-bottom: 0;
     padding: 0;
+    // Preserve newlines for code inside a pre block; the standalone `code`
+    // rule below sets `white-space: normal` for inline code, which would
+    // otherwise collapse the block's line breaks onto one line.
+    white-space: inherit;
+    word-wrap: inherit;
   }
 }
 
