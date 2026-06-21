@@ -65,7 +65,7 @@ For broad coding tasks, the eval also benefits from an LLM judge: a model that s
 
 ## Testing Today's Harness Against Yesterday's Problems
 
-Evals freeze the codebase at an older commit. But you don't want the agent seeing the harness files from six months ago, when the PR merged — you want it seeing *today's*. That's the entire point: you're testing your current harness against historical problems.
+Evals freeze the codebase at an older commit. But you don't want the agent seeing the harness files from six months ago, when the PR merged — you want it seeing _today's_. That's the entire point: you're testing your current harness against historical problems.
 
 The mechanism is an overlay. A repo profile captures the build-system specifics once and copies your current harness files forward from HEAD onto the frozen checkout, then reuses that setup across every eval case for the repo:
 
@@ -73,13 +73,14 @@ The mechanism is an overlay. A repo profile captures the build-system specifics 
 name: my-service
 default_overlay_branch: main
 default_overlay_from_head:
-  - CLAUDE.md    # whatever your stack calls its context file
-  - doc/adr/
-mechanical_checks:
-  - name: compile
-    command: mvn compile -s settings.xml -pl :my-service-app -q -DskipTests
-    timeout_seconds: 900
-{% endhighlight %}
+
+- CLAUDE.md # whatever your stack calls its context file
+- doc/adr/
+  mechanical_checks:
+- name: compile
+  command: mvn compile -s settings.xml -pl :my-service-app -q -DskipTests
+  timeout_seconds: 900
+  {% endhighlight %}
 
 The filenames are one ecosystem's. In Claude Code the context file is `CLAUDE.md` or files under `.claude/`; elsewhere it's `AGENTS.md`, a system prompt, or `.cursorrules`. The mechanics don't change — only the filenames.
 
@@ -170,7 +171,8 @@ But the alternative — shipping harness changes with no signal at all — isn't
 
 ---
 
-*Further reading:*
+_Further reading:_
+
 - [Harness Engineering — Martin Fowler](https://martinfowler.com/articles/harness-engineering.html)
 - [Harness Engineering — OpenAI](https://openai.com/index/harness-engineering/)
 - [How to Write Good AGENTS.md Files — Augment Code](https://www.augmentcode.com/blog/how-to-write-good-agents-dot-md-files)
