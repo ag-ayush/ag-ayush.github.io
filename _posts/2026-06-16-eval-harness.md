@@ -69,18 +69,17 @@ Evals freeze the codebase at an older commit. But you don't want the agent seein
 
 The mechanism is an overlay. A repo profile captures the build-system specifics once and copies your current harness files forward from HEAD onto the frozen checkout, then reuses that setup across every eval case for the repo:
 
-{% highlight yaml %}
+```yaml
 name: my-service
 default_overlay_branch: main
 default_overlay_from_head:
-
-- CLAUDE.md # whatever your stack calls its context file
-- doc/adr/
-  mechanical_checks:
-- name: compile
-  command: mvn compile -s settings.xml -pl :my-service-app -q -DskipTests
-  timeout_seconds: 900
-  {% endhighlight %}
+  - CLAUDE.md # whatever your stack calls its context file
+  - doc/adr/
+mechanical_checks:
+  - name: compile
+    command: mvn compile -s settings.xml -pl :my-service-app -q -DskipTests
+    timeout_seconds: 900
+```
 
 The filenames are one ecosystem's. In Claude Code the context file is `CLAUDE.md` or files under `.claude/`; elsewhere it's `AGENTS.md`, a system prompt, or `.cursorrules`. The mechanics don't change — only the filenames.
 
