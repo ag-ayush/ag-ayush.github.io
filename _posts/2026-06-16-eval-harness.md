@@ -15,8 +15,6 @@ We have automated tests for application code. CI pipelines. Coverage gates. Muta
 
 Then we plug in an AI coding agent, update the context files, tweak the tools it can use, and ship changes on feel.
 
-That's the gap eval harnesses close.
-
 That’s the gap eval harnesses close — where “eval harness” means the measurement system that reruns frozen tasks to check whether changes to the agent harness (context files, tools, permissions, feedback loops, workflow constraints) actually helped.
 
 ---
@@ -41,9 +39,9 @@ The insight transfers directly to your own codebase. You don't need a public ben
 
 A useful shorthand that [Martin Fowler points to in Harness Engineering](https://martinfowler.com/articles/harness-engineering.html):
 
-> **"Agent = Model + Harness"**
+> Agent = Model + Harness
 
-The model is one component. The context files, constraints, feedback loops, and instructions are the other. That matters because it means the agent harness is improvable — and improvements are measurable — without touching the model weights.
+The model is one component. The context files, constraints, feedback loops, and instructions are the other. That matters because it means the agent by this definition is improvable without touching the model weights.
 
 Teams that treat context files as documentation are missing the point. They are the other half of the agent. Measuring whether changes to them actually help isn't optional — it's the same discipline as measuring whether a code change works. The eval harness is what makes that discipline possible.
 
