@@ -23,7 +23,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-scaling-our-microservice-made-latency-worse-here-39-s-how-we-fixed-it",
+        },{id: "post-your-ai-coding-agent-changes-are-running-on-vibes",
+        
+          title: "Your AI Coding Agent Changes Are Running on Vibes",
+        
+        description: "AI coding agents are only half model. The other half is the harness around them, and evals are how teams stop changing that harness by feel.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/eval-harness/";
+          
+        },
+      },{id: "post-scaling-our-microservice-made-latency-worse-here-39-s-how-we-fixed-it",
         
           title: "Scaling Our Microservice Made Latency Worse - Here&#39;s How We Fixed It",
         
